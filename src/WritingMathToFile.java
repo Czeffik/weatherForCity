@@ -3,6 +3,7 @@ import java.util.Map;
 
 public class WritingMathToFile {
     public WritingMathToFile() {
+        new WritingToFile();
         this.writingToString();
         this.writingToObject();
     }
