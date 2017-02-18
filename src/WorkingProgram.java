@@ -1,8 +1,8 @@
 import java.io.IOException;
 
 public class WorkingProgram {
-    long actualTime;
-    long time;
+    private long actualTime;
+    private long time;
 
     public WorkingProgram() throws InterruptedException, IOException {
         new WritingMathToFile();
