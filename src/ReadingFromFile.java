@@ -1,19 +1,19 @@
 import javafx.util.Pair;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ReadingFromFile {
-    private Map<Pair<Integer, Double>, Map<Integer, Double>> mapToRead=null;
+    private Map<Pair<Integer, Double>, Map<Integer, Double>> mapToRead=new LinkedHashMap<>();;
+    private static int id = 0;
 
     public Map<Pair<Integer, Double>, Map<Integer, Double>> getMapToRead() {
         return mapToRead;
     }
 
-    public ReadingFromFile() {
+    public ReadingFromFile() throws IOException {
+        WritingToFile nowy = new WritingToFile();
         this.reading();
     }
 
@@ -22,7 +22,16 @@ public class ReadingFromFile {
             {
                 FileInputStream fis = new FileInputStream("data.ser");
                 ObjectInputStream ois = new ObjectInputStream(fis);
-                mapToRead = (LinkedHashMap) ois.readObject();
+//                FileReader czytak = new FileReader("data.ser");
+//                BufferedReader br = new BufferedReader(czytak);
+//                String line;
+//                System.out.println(br.toString());
+//                while((line=br.readLine())!=null) {
+                System.out.println(ois.read());
+                int line;
+                while((line = ois.read())==-1) {
+                    mapToRead.put((Pair<Integer, Double>) ois.readObject(), (LinkedHashMap<Integer, Double>) ois.readObject());
+                }
                 ois.close();
                 fis.close();
             }catch(IOException ioe)
@@ -32,7 +41,7 @@ public class ReadingFromFile {
             }catch(ClassNotFoundException c) {
                 c.printStackTrace();
             }
-//            System.out.println(mapToRead);
+            System.out.println(mapToRead);
             }
         }
 

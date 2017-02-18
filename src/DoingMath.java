@@ -1,5 +1,6 @@
 import javafx.util.Pair;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -10,11 +11,11 @@ public class DoingMath {
         return differenceBetweenForecastAndActualTemp;
     }
 
-    public DoingMath() {
+    public DoingMath() throws IOException {
         this.mathing();
     }
 
-    private void mathing(){
+    private void mathing() throws IOException {
         Map<Pair<Integer, Double>, Map<Integer, Double>> collectedData = new ReadingFromFile().getMapToRead();
         Map<Integer, Double> timeAndDifference;
 
@@ -38,6 +39,6 @@ public class DoingMath {
                 }
             }
         }
-        System.out.println(differenceBetweenForecastAndActualTemp);
+//        System.out.println(differenceBetweenForecastAndActualTemp);
     }
 }

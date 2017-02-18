@@ -12,16 +12,16 @@ public class ReadingUrl implements Serializable {
     private static final long serialVersionUID=343239482323131942L;
     private Map<Integer, Double> futureMap;
     private Pair<Integer, Double> presentPair;
-    private Map<Pair<Integer, Double>, Map<Integer, Double>> mapMap;
+    private Pair<Pair<Integer, Double>, Map<Integer, Double>> pairPairMap;
 
-    public Map<Pair<Integer, Double>, Map<Integer, Double>> getMapMap() {
-        return mapMap;
+    public Pair<Pair<Integer, Double>, Map<Integer, Double>> getPairPairMap() {
+        return pairPairMap;
     }
 
     public ReadingUrl(String linkPresent, String linkFuture) throws IOException {
         this.readingFuture(linkFuture);
         this.readingPresent(linkPresent);
-        this.doMap();
+        this.doPair();
     }
 
     private String stringBuilder(String link) throws IOException {
@@ -53,8 +53,7 @@ public class ReadingUrl implements Serializable {
         JSONObject json = new JSONObject(text);
         presentPair = new Pair<>((int)json.get("dt"), (double) new JSONObject(json.get("main").toString()).get("temp"));
     }
-    private void doMap (){
-        mapMap = new LinkedHashMap<>();
-        mapMap.put(presentPair, futureMap);
+    private void doPair (){
+        pairPairMap = new Pair<>(presentPair, futureMap);
     }
 }

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 
 public class WritingMathToFile {
-    public WritingMathToFile(){
+    public WritingMathToFile() throws IOException {
         Map<Integer, Map<Integer, Double>> mathDone = new DoingMath().getDifferenceBetweenForecastAndActualTemp();
         try{
             FileWriter fileToWrite = new FileWriter("writtenMathData.txt");
