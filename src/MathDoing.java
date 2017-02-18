@@ -11,11 +11,11 @@ public class MathDoing {
         return allDifferences;
     }
 
-    public MathDoing(){
-        this.mathing();
+    public MathDoing(String city){
+        this.mathing(city);
     }
-    private void mathing(){
-        Map<Pair<Integer, Double>, Map<Integer, Double>> mapToRead = new ReadingFromFile().getMapToRead();
+    private void mathing(String city){
+        Map<Pair<Integer, Double>, Map<Integer, Double>> mapToRead = new ReadingFromFile(city).getMapToRead();
         allDifferences = new LinkedHashMap<>();
 
         for (Pair keyMapToRead: mapToRead.keySet()) {
@@ -28,7 +28,7 @@ public class MathDoing {
 
                 for (int mapKey : mapToRead.get(keyMapToRead2).keySet()) {
                     if(pairKey==mapKey){
-                        int key = (pairKey2-pairKey)/3600;
+                        int key = (pairKey-pairKey2)/3600;
                         double value = pairValue - mapToRead.get(keyMapToRead2).get(mapKey);
                         differenceTimeAndTemperature.put(key, value);
                     }

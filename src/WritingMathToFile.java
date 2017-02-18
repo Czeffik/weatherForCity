@@ -2,15 +2,16 @@ import java.io.*;
 import java.util.Map;
 
 public class WritingMathToFile {
-    public WritingMathToFile() {
-        new WritingToFile();
-        this.writingToString();
-        this.writingToObject();
+    public WritingMathToFile(String city) {
+        Link link = new Link(city);
+        new WritingToFile(link.getPresentLink(),link.getFutureLink(),city);
+        this.writingToString(city);
+        this.writingToObject(city);
     }
-    private void writingToString(){
-        Map<Integer, Map<Integer, Double>> mathDone = new MathDoing().getAllDifferences();
+    private void writingToString(String city){
+        Map<Integer, Map<Integer, Double>> mathDone = new MathDoing(city).getAllDifferences();
         try{
-            FileWriter fileToWrite = new FileWriter("writtenMathData2.txt");
+            FileWriter fileToWrite = new FileWriter(city+"writtenMathData2.txt");
             BufferedWriter out = new BufferedWriter(fileToWrite);
 
             for(int mathDoneKey: mathDone.keySet()){
@@ -28,11 +29,11 @@ public class WritingMathToFile {
             e.printStackTrace();
         }
     }
-    private void writingToObject(){
-        Map<Integer, Map<Integer, Double>> mathDone = new MathDoing().getAllDifferences();
+    private void writingToObject(String city){
+        Map<Integer, Map<Integer, Double>> mathDone = new MathDoing(city).getAllDifferences();
         try
         {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("writtenMathDataObject2.ser"));
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(city+"writtenMathDataObject2.ser"));
             oos.writeObject(mathDone);
             oos.close();
         }catch(IOException ioe)

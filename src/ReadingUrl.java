@@ -54,7 +54,7 @@ public class ReadingUrl{
     private void readingPresent(String linkPresent){
         String text = this.stringBuilder(linkPresent);
         JSONObject json = new JSONObject(text);
-        presentPair = new Pair<>(((int)json.get("dt")-((int)json.get("dt")%10800)), (double) new JSONObject(json.get("main").toString()).get("temp"));
+        presentPair = new Pair<>(((int)json.get("dt")-((int)json.get("dt")%3600)), (double) new JSONObject(json.get("main").toString()).get("temp"));
     }
     private void doPair (){
         pairPairMap = new Pair<>(presentPair, futureMap);

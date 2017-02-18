@@ -12,14 +12,14 @@ public class ReadingFromFile {
         return mapToRead;
     }
 
-    public ReadingFromFile(){
-        this.reading();
+    public ReadingFromFile(String city){
+        this.reading(city);
     }
 
-     private void reading() {
+     private void reading(String city) {
          mapToRead = new LinkedHashMap<>();
          try {
-             FileInputStream fis = new FileInputStream("data2.ser");
+             FileInputStream fis = new FileInputStream(city+"data2.ser");
              ObjectInputStream ois = new ObjectInputStream(fis);
 
              mapToRead = (LinkedHashMap<Pair<Integer, Double>, Map<Integer, Double>>) ois.readObject();

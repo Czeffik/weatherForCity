@@ -9,22 +9,23 @@ import java.util.Map;
 
 public class WritingToFile {
     private Map<Pair<Integer, Double>, Map<Integer, Double>> mapToWrite=new LinkedHashMap<>();
-    public WritingToFile(){
-        if(new File("data2.ser").exists()){
-        mapToWrite = new ReadingFromFile().getMapToRead();
+
+    public WritingToFile(String linkPresent, String linkFuture, String city){
+        if(new File(city+"data2.ser").exists()){
+        mapToWrite = new ReadingFromFile(city).getMapToRead();
         }
-        this.creatingMap();
-        this.writting();
+        this.creatingMap(linkPresent, linkFuture);
+        this.writting(city);
     }
-    private void creatingMap(){
-        Pair<Pair<Integer, Double>, Map<Integer, Double>>pairToWrite = new ReadingUrl("http://api.openweathermap.org/data/2.5/weather?q=Oswiecim,pol&APPID=71ad073f87383bd799851e6388bfcc8a", "http://api.openweathermap.org/data/2.5/forecast?q=oswiecim,pol&APPID=71ad073f87383bd799851e6388bfcc8a").getPairPairMap();
+    private void creatingMap(String linkPresent, String linkFuture){
+        Pair<Pair<Integer, Double>, Map<Integer, Double>>pairToWrite = new ReadingUrl(linkPresent, linkFuture).getPairPairMap();
         mapToWrite.put(pairToWrite.getKey(),pairToWrite.getValue());
     }
-    private void writting(){
+    private void writting(String city){
 
         try
         {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("data2.ser"));
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(city+"data2.ser"));
             oos.writeObject(mapToWrite);
             oos.close();
         }catch(IOException ioe)
