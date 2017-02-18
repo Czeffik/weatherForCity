@@ -8,8 +8,7 @@ import java.nio.charset.Charset;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class ReadingUrl implements Serializable {
-    private static final long serialVersionUID=343239482323131942L;
+public class ReadingUrl{
     private Map<Integer, Double> futureMap;
     private Pair<Integer, Double> presentPair;
     private Pair<Pair<Integer, Double>, Map<Integer, Double>> pairPairMap;
@@ -18,25 +17,29 @@ public class ReadingUrl implements Serializable {
         return pairPairMap;
     }
 
-    public ReadingUrl(String linkPresent, String linkFuture) throws IOException {
+    public ReadingUrl(String linkPresent, String linkFuture){
         this.readingFuture(linkFuture);
         this.readingPresent(linkPresent);
         this.doPair();
     }
 
-    private String stringBuilder(String link) throws IOException {
+    private String stringBuilder(String link){
         StringBuilder sb = new StringBuilder();
-        InputStream is = new URL(link).openStream();
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-        int line;
-        while ((line=br.read())!=-1){
-            sb.append((char)line);
+        InputStream is = null;
+        try {
+            is = new URL(link).openStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+            int line;
+            while ((line=br.read())!=-1){
+                sb.append((char)line);
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        br.close();
         return sb.toString();
     }
-    private void readingFuture(String linkFuture) throws IOException {
+    private void readingFuture(String linkFuture){
         futureMap = new LinkedHashMap<>();
         String text = this.stringBuilder(linkFuture);
         JSONObject json = new JSONObject(text);
@@ -44,14 +47,14 @@ public class ReadingUrl implements Serializable {
         int i=0;
         while(i<jsonArray.length()) {
             JSONObject jsonObject = new JSONObject(jsonArray.get(i).toString());
-            futureMap.put((int)jsonObject.get("dt"), (double) new JSONObject(jsonObject.get("main").toString()).get("temp"));
+            futureMap.put((int)jsonObject.get("dt"), Double.parseDouble(String.valueOf(new JSONObject(jsonObject.get("main").toString()).get("temp"))));
             i++;
         }
     }
-    private void readingPresent(String linkPresent) throws IOException {
+    private void readingPresent(String linkPresent){
         String text = this.stringBuilder(linkPresent);
         JSONObject json = new JSONObject(text);
-        presentPair = new Pair<>((int)json.get("dt"), (double) new JSONObject(json.get("main").toString()).get("temp"));
+        presentPair = new Pair<>(((int)json.get("dt")-((int)json.get("dt")%10800)), (double) new JSONObject(json.get("main").toString()).get("temp"));
     }
     private void doPair (){
         pairPairMap = new Pair<>(presentPair, futureMap);

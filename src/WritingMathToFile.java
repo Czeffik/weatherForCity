@@ -1,13 +1,15 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Map;
 
 public class WritingMathToFile {
-    public WritingMathToFile() throws IOException {
-        Map<Integer, Map<Integer, Double>> mathDone = new DoingMath().getDifferenceBetweenForecastAndActualTemp();
+    public WritingMathToFile() {
+        this.writingToString();
+        this.writingToObject();
+    }
+    private void writingToString(){
+        Map<Integer, Map<Integer, Double>> mathDone = new MathDoing().getAllDifferences();
         try{
-            FileWriter fileToWrite = new FileWriter("writtenMathData.txt");
+            FileWriter fileToWrite = new FileWriter("writtenMathData2.txt");
             BufferedWriter out = new BufferedWriter(fileToWrite);
 
             for(int mathDoneKey: mathDone.keySet()){
@@ -23,6 +25,18 @@ public class WritingMathToFile {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    private void writingToObject(){
+        Map<Integer, Map<Integer, Double>> mathDone = new MathDoing().getAllDifferences();
+        try
+        {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("writtenMathDataObject2.ser"));
+            oos.writeObject(mathDone);
+            oos.close();
+        }catch(IOException ioe)
+        {
+            ioe.printStackTrace();
         }
     }
 }
