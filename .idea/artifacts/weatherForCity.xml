@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="weatherForCity">
+    <output-path>$PROJECT_DIR$/out/artifacts/weatherForCity</output-path>
+    <root id="archive" name="weatherForCity.jar">
+      <element id="module-output" name="weatherForCity" />
+      <element id="library" level="project" name="json-20131018" />
+    </root>
+  </artifact>
+</component>

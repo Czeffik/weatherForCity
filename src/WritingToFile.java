@@ -12,7 +12,14 @@ public class WritingToFile {
 
     public WritingToFile(String linkPresent, String linkFuture, String city){
         if(new File(city+"data2.ser").exists()){
-        mapToWrite = new ReadingFromFile(city).getMapToRead();
+            mapToWrite = new ReadingFromFile(city).getMapToRead();
+            for(Pair mapToWriteKey:mapToWrite.keySet()){
+                long actualTime = System.currentTimeMillis()/1000;
+                //Deleting data older than oen month:
+                if(actualTime - (long)mapToWriteKey.getKey()>2592000){
+                    mapToWrite.remove(mapToWriteKey);
+                }
+            }
         }
         this.creatingMap(linkPresent, linkFuture);
         this.writting(city);

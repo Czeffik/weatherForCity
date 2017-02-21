@@ -12,9 +12,6 @@ public class MathDoing {
     }
 
     public MathDoing(String city){
-        this.mathing(city);
-    }
-    private void mathing(String city){
         Map<Pair<Integer, Double>, Map<Integer, Double>> mapToRead = new ReadingFromFile(city).getMapToRead();
         allDifferences = new LinkedHashMap<>();
 
@@ -39,5 +36,6 @@ public class MathDoing {
             }
         }
 //        System.out.println(allDifferences);
+
     }
 }
