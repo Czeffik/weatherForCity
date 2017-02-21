@@ -17,7 +17,7 @@ public class ReadingFromFile {
     public ReadingFromFile(String city){
         mapToRead = new LinkedHashMap<>();
         try {
-            FileInputStream fis = new FileInputStream(city+"data2.ser");
+            FileInputStream fis = new FileInputStream(city+"Data2.ser");
             ObjectInputStream ois = new ObjectInputStream(fis);
 
             mapToRead = (LinkedHashMap<Pair<Integer, Double>, Map<Integer, Double>>) ois.readObject();

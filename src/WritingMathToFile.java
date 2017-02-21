@@ -11,7 +11,7 @@ public class WritingMathToFile {
     private void writingToString(String city){
         Map<Integer, Map<Integer, Double>> mathDone = new MathDoing(city).getAllDifferences();
         try{
-            FileWriter fileToWrite = new FileWriter(city+"writtenMathData2.txt");
+            FileWriter fileToWrite = new FileWriter(city+"WrittenMathData2.txt");
             BufferedWriter out = new BufferedWriter(fileToWrite);
 
             for(int mathDoneKey: mathDone.keySet()){
@@ -33,7 +33,7 @@ public class WritingMathToFile {
         Map<Integer, Map<Integer, Double>> mathDone = new MathDoing(city).getAllDifferences();
         try
         {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(city+"writtenMathDataObject2.ser"));
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(city+"WrittenMathDataObject2.ser"));
             oos.writeObject(mathDone);
             oos.close();
         }catch(IOException ioe)

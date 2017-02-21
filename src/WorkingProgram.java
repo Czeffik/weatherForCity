@@ -3,6 +3,7 @@ public class WorkingProgram {
     private long time;
 
     public WorkingProgram(String city) {
+        System.out.println("Program working...");
         new WritingMathToFile(city);
         actualTime = (System.currentTimeMillis()/1000);
         time = actualTime-(actualTime%3600)+3600;

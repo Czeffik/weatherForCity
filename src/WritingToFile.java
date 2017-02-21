@@ -11,7 +11,7 @@ public class WritingToFile {
     private Map<Pair<Integer, Double>, Map<Integer, Double>> mapToWrite=new LinkedHashMap<>();
 
     public WritingToFile(String linkPresent, String linkFuture, String city){
-        if(new File(city+"data2.ser").exists()){
+        if(new File(city+"Data2.ser").exists()){
             mapToWrite = new ReadingFromFile(city).getMapToRead();
             for(Pair mapToWriteKey:mapToWrite.keySet()){
                 long actualTime = System.currentTimeMillis()/1000;
@@ -32,7 +32,7 @@ public class WritingToFile {
 
         try
         {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(city+"data2.ser"));
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(city+"Data2.ser"));
             oos.writeObject(mapToWrite);
             oos.close();
         }catch(IOException ioe)
