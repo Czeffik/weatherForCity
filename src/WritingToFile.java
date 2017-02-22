@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class WritingToFile {
+//    Map for actual and future data
     private Map<Pair<Integer, Double>, Map<Integer, Double>> mapToWrite=new LinkedHashMap<>();
 
     public WritingToFile(String linkPresent, String linkFuture, String city){
@@ -15,7 +16,7 @@ public class WritingToFile {
             mapToWrite = new ReadingFromFile(city).getMapToRead();
             for(Pair mapToWriteKey:mapToWrite.keySet()){
                 long actualTime = System.currentTimeMillis()/1000;
-                //Deleting data older than oen month:
+                //Deleting data older than 30 days:
                 if(actualTime - (long)mapToWriteKey.getKey()>2592000){
                     mapToWrite.remove(mapToWriteKey);
                 }
@@ -24,10 +25,12 @@ public class WritingToFile {
         this.creatingMap(linkPresent, linkFuture);
         this.writting(city);
     }
+//    Putting new datas to Map
     private void creatingMap(String linkPresent, String linkFuture){
         Pair<Pair<Integer, Double>, Map<Integer, Double>>pairToWrite = new ReadingUrl(linkPresent, linkFuture).getPairPairMap();
         mapToWrite.put(pairToWrite.getKey(),pairToWrite.getValue());
     }
+//    Writting Map with data to file
     private void writting(String city){
 
         try

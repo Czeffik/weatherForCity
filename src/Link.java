@@ -1,4 +1,4 @@
-
+//Creating link for API
 public class Link {
     private String city;
     private String presentLink= "http://api.openweathermap.org/data/2.5/weather?q="+city+",pol&APPID=71ad073f87383bd799851e6388bfcc8a";

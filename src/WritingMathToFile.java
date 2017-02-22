@@ -29,6 +29,7 @@ public class WritingMathToFile {
             e.printStackTrace();
         }
     }
+//    If somebody nedd do anything more with data, creating file with Objects
     private void writingToObject(String city){
         Map<Integer, Map<Integer, Double>> mathDone = new MathDoing(city).getAllDifferences();
         try

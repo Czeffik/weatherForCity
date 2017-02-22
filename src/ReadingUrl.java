@@ -22,7 +22,7 @@ public class ReadingUrl{
         this.readingPresent(linkPresent);
         this.doPair();
     }
-
+//Reading URL
     private String stringBuilder(String link){
         StringBuilder sb = new StringBuilder();
         InputStream is = null;
@@ -39,6 +39,7 @@ public class ReadingUrl{
         }
         return sb.toString();
     }
+//    Taking forecast temperatures and hours
     private void readingFuture(String linkFuture){
         futureMap = new LinkedHashMap<>();
         String text = this.stringBuilder(linkFuture);
@@ -51,6 +52,7 @@ public class ReadingUrl{
             i++;
         }
     }
+//    Taking actual temperature and hour
     private void readingPresent(String linkPresent){
         String text = this.stringBuilder(linkPresent);
         JSONObject json = new JSONObject(text);

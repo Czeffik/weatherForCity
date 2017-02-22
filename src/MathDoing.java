@@ -25,7 +25,7 @@ public class MathDoing {
 
                 for (int mapKey : mapToRead.get(keyMapToRead2).keySet()) {
                     if(pairKey==mapKey){
-                        int key = (pairKey-pairKey2)/3600;
+                        int key = (pairKey-pairKey2)/3600; //3600 second = 1 hour
                         double value = pairValue - mapToRead.get(keyMapToRead2).get(mapKey);
                         differenceTimeAndTemperature.put(key, value);
                     }
@@ -35,7 +35,5 @@ public class MathDoing {
                 allDifferences.put(pairKey, differenceTimeAndTemperature);
             }
         }
-//        System.out.println(allDifferences);
-
     }
 }
