@@ -1,4 +1,0 @@
-Sat Feb 18 19:00:00 CET 2017 results: 
-1 hour forecast : difference between temperature: 1.2069999999999936 |2 hour forecast : difference between temperature: -0.002999999999985903 |3 hour forecast : difference between temperature: 0.7769999999999868 |
-Sat Feb 18 22:00:00 CET 2017 results: 
-1 hour forecast : difference between temperature: -0.0049999999999954525 |3 hour forecast : difference between temperature: -0.0049999999999954525 |4 hour forecast : difference between temperature: 0.9050000000000296 |5 hour forecast : difference between temperature: -0.0049999999999954525 |6 hour forecast : difference between temperature: 1.634999999999991 |
